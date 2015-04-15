@@ -1,0 +1,54 @@
+Notes on Activities and Tasks!
+
+Task 	- A stack containing activity instances (must have at least one)
+	-Starting the app creates a new 'Task' with a root activity 
+	(e.g. a title screen)
+
+Activity- A single page in an app.  Each has a number of attributes, one
+	 of which being "Launch Mode"
+
+LaunchMode	- Each activity has an attribute "LaunchMode"
+		- Has one of Four modes which dictates how the activity 
+		acts when called
+
+LaunchMode="standard"
+	- Multiple instances of this activity can be created
+	- Each Task can have multiple instances of this activity
+	- One instance can exist in multiple Tasks
+	- Most commonly-used LaunchMode
+
+LaunchMode="singleTop"
+	- If an instance of this activity is at the top of the current
+	task, and the user calls for the creation of this activity, the 
+	current instance is used as opposed to creating a new instance
+	Example:
+		Task = new Task(A);
+		A.launchMode = "standard";
+		B.launchMode = "singleTop";
+		A.calls(B);
+		B.calls(A);
+		A.calls(A);
+		A.calls(B);
+		B.calls(B);
+		
+	This sequence results in a Task : 
+		B
+		A
+		A
+		B
+	      __A__
+
+LaunchMode="singleTask"
+	-When called, a new Task is created with this activity as its 
+	root activity.  If an instance already exists, it will use 
+	the existing instance, but move it to the new task (I think...)
+
+LaunchMode="singleInstance"
+	-Same as single task but is the only activity in its Task.  Any
+	new activities called to be created on top of this one will be
+	created in a different Task.
+
+Source: http://www.slideshare.net/RanNachmany/manipulating-android-tasks-and-back-stack
+	       
+
+		
