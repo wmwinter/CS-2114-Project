@@ -1,4 +1,4 @@
-Notes on Activities and Tasks!
+			Notes on Activities and Tasks!
 
 Task 	- A stack containing activity instances (must have at least one)
 	-Starting the app creates a new 'Task' with a root activity 
