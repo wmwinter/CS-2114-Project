@@ -9,6 +9,11 @@ public class TitleScreen
     extends Activity
 {
 
+    public TitleScreen()
+    {
+        return null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
