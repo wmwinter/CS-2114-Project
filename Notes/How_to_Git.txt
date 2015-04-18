@@ -1,0 +1,27 @@
+GIT TROUBLESHOOTING
+
+HOW TO ADD SUBMIT A CHANGE
+	git fetch upstream
+	git checkout master
+	git merge upstream/master
+	git push
+	git add direction/of/changed/file(s)/
+	git commit -m "detailed commit message"
+	git push
+
+
+ERROR TROUBLESHOOTING
+
+Does your head contain the latest commit but not your master?
+	git checkout master
+	git merge <SHA1ID>
+
+Is your branch behind user/master by X-commits?
+	git pull origin
+
+Detached Head?
+	git checkout -b fixes
+	git merge -s ours master
+	git checkout master
+	git merge fixes
+	git push cs/master
