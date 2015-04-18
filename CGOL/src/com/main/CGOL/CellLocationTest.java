@@ -24,7 +24,7 @@ public class CellLocationTest extends student.TestCase
      */
     public void setUp()
     {
-        celly = new CellLocation(0, 0, 10, 10);
+        celly = new CellLocation(2, 3);
 
     }
 
@@ -41,5 +41,18 @@ public class CellLocationTest extends student.TestCase
         //tests making a cell live
         celly.setAlive();
         assertTrue(celly.getAlive());
+
+        //tests making the Cell dead again
+        celly.setDead();
+        assertFalse(celly.getAlive());
+    }
+
+    /**
+     * tests getting the coordinates
+     */
+    public void testGetCoordinate()
+    {
+        assertEquals(2, celly.getXCoord());
+        assertEquals(3, celly.getYCoord());
     }
 }

@@ -1,8 +1,8 @@
 package com.main.CGOL;
 
+
 import sofia.app.ShapeScreen;
-import sofia.graphics.Color;
-import sofia.graphics.RectangleShape;
+
 
 /**
  * // -------------------------------------------------------------------------
@@ -19,7 +19,6 @@ public class GridOfCells
     extends ShapeScreen
 {
     private CellLocation[][] grid;
-    private float            cellSize;
     private int gridWidth;
     private int gridHeight;
 
@@ -31,6 +30,19 @@ public class GridOfCells
      */
     public GridOfCells(int x, int y)
     {
+        gridWidth = x;
+        gridHeight = y;
+        grid = new CellLocation[gridWidth][gridWidth];
+        for (int i = 0; x < gridWidth; i++)
+        {
+            for (int j = 0; y < gridWidth; j++)
+            {
+                grid[i][j] = new CellLocation(i, j);
+
+
+            }
+        }
+
 
     }
 
@@ -38,7 +50,7 @@ public class GridOfCells
      * Returns the height of the total grid.
      * @return height field value.
      */
-    public int getHeight()
+    public int height()
     {
         return gridHeight;
     }
@@ -47,7 +59,7 @@ public class GridOfCells
      * Returns the width of the total grid.
      * @return width field value.
      */
-    public int getWidth()
+    public int width()
     {
         return gridWidth;
     }
@@ -93,66 +105,16 @@ public class GridOfCells
 
 
     /**
-     * Processes the user's touch
-     *
-     * @param x the x coord
-     * @param y the y coord
-     */
-    public void processTouch(float x, float y)
-    {
-        //not finished
-        RectangleShape tile =
-            getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
-        tile.setFillColor(Color.black);
-        int actualX = (int)(x / cellSize);
-        int actualY = (int)(y / cellSize);
-        this.getCell(actualX, actualY).setAlive();
-    }
-
-
-    /**
-     * Toggles the cell state when a cell is touched.
-     *
-     * @param x the x-coordinate for the picture
-     * @param y the y-coordinate for the picture
-     */
-    public void onTouchDown(float x, float y)
-    {
-        this.processTouch(x, y);
-    }
-
-
-    /**
-     * Toggles the cell state with the swipe of a finger.
-     *
-     * @param x the x-coordinate for the picture
-     * @param y the y-coordinate for the picture
-     */
-    public void onTouchMove(float x, float y)
-    {
-        this.processTouch(x, y);
-    }
-
-
-    /**
      * Runs the program
      *
      * @param x coordinate of the cell
      * @param y coordinate of the cell
+     *
+     * @return boolean
      */
-    public void isAlive(int x, int y)
+    public boolean isAlive(int x, int y)
     {
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                if (this.getNeighbors(x, y) == 2
-                    || this.getNeighbors(x, y) == 3)
-                {
-                    this.processTouch(i * cellSize, y * cellSize);
-                }
-            }
-        }
+        return this.getCell(x, y).getAlive();
     }
 
 }

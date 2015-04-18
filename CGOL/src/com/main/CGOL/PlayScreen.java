@@ -1,5 +1,6 @@
 package com.main.CGOL;
 
+import sofia.graphics.Color;
 import android.view.Display;
 import sofia.graphics.RectangleShape;
 import android.app.Activity;
@@ -58,5 +59,48 @@ public class PlayScreen
         ILocation initialGoal = new Location(size - 1, size - 1);
         setGoalLocation(initialGoal);
     }
+
+
+    /**
+     * Processes the user's touch
+     *
+     * @param x the x coord
+     * @param y the y coord
+     */
+    public void processTouch(float x, float y)
+    {
+        //not finished
+        RectangleShape tile =
+            getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
+        tile.setFillColor(Color.black);
+        int actualX = (int)(x / cellSize);
+        int actualY = (int)(y / cellSize);
+        this.getCell(actualX, actualY).setAlive();
+    }
+
+
+    /**
+     * Toggles the cell state when a cell is touched.
+     *
+     * @param x the x-coordinate for the picture
+     * @param y the y-coordinate for the picture
+     */
+    public void onTouchDown(float x, float y)
+    {
+        this.processTouch(x, y);
+    }
+
+
+    /**
+     * Toggles the cell state with the swipe of a finger.
+     *
+     * @param x the x-coordinate for the picture
+     * @param y the y-coordinate for the picture
+     */
+    public void onTouchMove(float x, float y)
+    {
+        this.processTouch(x, y);
+    }
+
 
 }

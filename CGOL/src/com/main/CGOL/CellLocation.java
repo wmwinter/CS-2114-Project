@@ -1,6 +1,5 @@
 package com.main.CGOL;
-import sofia.graphics.Color;
-import sofia.graphics.RectangleShape;
+
 /**
  * // -------------------------------------------------------------------------
 /**
@@ -12,21 +11,21 @@ import sofia.graphics.RectangleShape;
  * @author William Winter
  *  @version April 10, 2015
  */
-public class CellLocation extends RectangleShape
+public class CellLocation
 {
+    private int xCoord;
+    private int yCoord;
     private boolean alive;
     /**
      * The constructor for the covertile
      *
-     * @param left    the left of the tile
-     * @param top    the top of the tile
-     * @param right    the right of the tile
-     * @param bottom    the bottom of the tile
+     * @param x    x-coordinate of the cell
+     * @param y    y-coordinate of the cell
      */
-    public CellLocation(float left, float top, float right, float bottom)
+    public CellLocation(int x, int y)
     {
-        super(left, top, right, bottom);
-        this.setFillColor(Color.white);
+        xCoord = x;
+        yCoord = y;
         alive = false;
     }
 
@@ -39,6 +38,14 @@ public class CellLocation extends RectangleShape
     }
 
     /**
+     * Makes this cell alive
+     */
+    public void setDead()
+    {
+        this.alive = false;
+    }
+
+    /**
      * Returns whether or not this cell is alive
      *
      * @return boolean if the cell is alive
@@ -47,4 +54,25 @@ public class CellLocation extends RectangleShape
     {
         return this.alive;
     }
+
+    /**
+     * Returns the cell's x coordinate
+     *
+     * @return xLocation
+     */
+    public int getXCoord()
+    {
+        return xCoord;
+    }
+
+    /**
+     * Returns the cell's x coordinate
+     *
+     * @return xLocation
+     */
+    public int getYCoord()
+    {
+        return yCoord;
+    }
+
 }
