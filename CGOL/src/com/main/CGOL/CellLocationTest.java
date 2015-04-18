@@ -2,7 +2,7 @@ package com.main.CGOL;
 /**
  * // -------------------------------------------------------------------------
 /**
- * Tests the Cell location
+ * Tests the Cell location class
  *
  * @author Parisa Samareh
  * @author Bryan Kaperick

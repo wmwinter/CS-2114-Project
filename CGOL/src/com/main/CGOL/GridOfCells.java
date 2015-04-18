@@ -26,28 +26,12 @@ public class GridOfCells
 
     /**
      * The initialize method sets up the grid.
+     * @param x     horizontal dimension of play area
+     * @param y     vertical dimension of play area
      */
-    public void initialize(int x, int y)
+    public GridOfCells(int x, int y)
     {
-        width = x;
-        height = y;
-        grid = new CellLocation[x][y];
-        cellSize = (Math.min(this.getWidth(), this.getHeight())) / 8;
-        float width = (this.getWidth() / x);
-        float height = (this.getHeight() / y);
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                RectangleShape cell =
-                    new RectangleShape(
-                        i * width,
-                        j * height,
-                        (i + 1) * width,
-                        (j + 1) * height);
-                this.add(cell);
-            }
-        }
+
     }
 
     /**
