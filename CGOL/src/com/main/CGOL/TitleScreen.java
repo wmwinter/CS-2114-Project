@@ -11,7 +11,7 @@ public class TitleScreen
 
     public TitleScreen()
     {
-        return null;
+
     }
 
     @Override

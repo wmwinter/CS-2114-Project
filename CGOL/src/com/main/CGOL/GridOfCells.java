@@ -15,7 +15,7 @@ import sofia.graphics.RectangleShape;
  * @author William Winter
  * @version April 10, 2015
  */
-public class GridofCells
+public class GridOfCells
     extends ShapeScreen
 {
     private CellLocation[][] grid;

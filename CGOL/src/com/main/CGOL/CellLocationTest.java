@@ -12,9 +12,34 @@ package com.main.CGOL;
 public class CellLocationTest extends student.TestCase
 {
 
+    // FIELDS ---------------------------------------
 
+    private CellLocation celly;
+
+
+    // SET UP ---------------------------------------
+
+    /**
+     * Sets up testing
+     */
+    public void setUp()
+    {
+        celly = new CellLocation(0, 0, 10, 10);
+
+    }
+
+
+    // METHODS ----------------------------------------
+    /**
+     * tests making a cell live
+     */
     public void testLiveCell()
     {
-        assertEquals(1, 1);
+        //tests initializing a cell as dead
+        assertFalse(celly.getAlive());
+
+        //tests making a cell live
+        celly.setAlive();
+        assertTrue(celly.getAlive());
     }
 }
