@@ -53,4 +53,22 @@
         android:layout_centerVertical="true"
         android:text="Begin?" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/title"
+        android:layout_below="@+id/start"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView1"
+        android:src="@drawable/ic_launcher" />
+
 </RelativeLayout>
