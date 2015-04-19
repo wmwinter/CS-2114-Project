@@ -1,9 +1,5 @@
 package com.main.CGOL;
 
-
-import sofia.app.ShapeScreen;
-
-
 /**
  * // -------------------------------------------------------------------------
  * /** Our class for the main game screen.
@@ -16,7 +12,6 @@ import sofia.app.ShapeScreen;
  * @version April 10, 2015
  */
 public class GridOfCells
-    extends ShapeScreen
 {
     private CellLocation[][] grid;
     private int gridWidth;
@@ -42,8 +37,6 @@ public class GridOfCells
 
             }
         }
-
-
     }
 
     /**
@@ -116,6 +109,7 @@ public class GridOfCells
     {
         return this.getCell(x, y).getAlive();
     }
+
 
 }
 

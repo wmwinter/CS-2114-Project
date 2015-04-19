@@ -1,21 +1,33 @@
 package com.main.CGOL;
-
+import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import android.view.Display;
 import sofia.graphics.RectangleShape;
 import android.app.Activity;
 
+/**
+ * // -------------------------------------------------------------------------
+/**
+ *  The GUI screen where the game is played
+ *
+ *  @author Parisa
+ *  @version Apr 18, 2015
+ */
 public class PlayScreen
-    extends Activity
+    extends ShapeScreen
 {
     private int          gridXnum;
     private int          gridYnum;
-    private int          gridWidth;
-    private int          gridHeight;
-    private CellLocation[][] grid;
-    private int          cellSize;
-    private Display display;
-    int metrics;
+    private float        gridWidth;
+    private float        gridHeight;
+    private GridOfCells  grid;
+    private float        cellSize;
+    private Boolean      playPauseMode;
+    private Boolean      settings;
+    private Boolean      stepForward;
+    private Boolean      stepBack;
+    private Boolean      load;
+    private Boolean      save;
 
     /**
      * The initialize method sets up the grid.
@@ -24,40 +36,98 @@ public class PlayScreen
      */
     public void initialize(int x, int y)
     {
-        gridWidth = this.getResources().getDisplayMetrics().widthPixels;
-        gridHeight = this.getResources().getDisplayMetrics().heightPixels;
+        gridWidth = this.getWidth();
+        gridHeight = this.getHeight();
         gridXnum = x;
         gridYnum = y;
-        grid = new CellLocation[x][y];
+        grid = new GridOfCells(x, y);
         cellSize = (Math.min(gridWidth, gridHeight) / Math.max(x, y));
-        float cellWidth = (this.getWidth() / x);
-        float height = (this.getHeight() / y);
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < x; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < y; j++)
             {
                 RectangleShape cell =
                     new RectangleShape(
-                        i * width,
-                        j * height,
-                        (i + 1) * width,
-                        (j + 1) * height);
+                        i * cellSize,
+                        j * cellSize,
+                        (i + 1) * cellSize,
+                        (j + 1) * cellSize);
                 this.add(cell);
             }
         }
-        dim = size;
-        cell = new MazeCell[size][size];
-        for (int x = 0; x < size; x++)
-        {
-            for (int y = 0; y < size; y++)
-            {
-                cell[x][y] = MazeCell.UNEXPLORED;
-            }
-        }
-        ILocation initialStart = new Location(0, 0);
-        setStartLocation(initialStart);
-        ILocation initialGoal = new Location(size - 1, size - 1);
-        setGoalLocation(initialGoal);
+    }
+
+    /**
+     * Method for when the user wants to play the simulation
+     */
+    public void playPauseModeClicked()
+    {
+        playPauseMode = true;
+        settings = false;
+        stepForward = false;
+        stepBack = false;
+        load = false;
+        save = false;
+    }
+    /**
+     * Method for when the user wants to go to the settings page
+     */
+    public void settingsClicked()
+    {
+        playPauseMode = false;
+        settings = true;
+        stepForward = false;
+        stepBack = false;
+        load = false;
+        save = false;
+    }
+    /**
+     * Method for when the user wants to step forward once in the simulation
+     */
+    public void stepForwardClicked()
+    {
+        playPauseMode = false;
+        settings = false;
+        stepForward = true;
+        stepBack = false;
+        load = false;
+        save = false;
+    }
+    /**
+     * Method for when the user wants to step backward once in the simulation
+     */
+    public void stepBackClicked()
+    {
+        playPauseMode = false;
+        settings = false;
+        stepForward = false;
+        stepBack = true;
+        load = false;
+        save = false;
+    }
+    /**
+     * Method for when the user wants to load an already saved game
+     */
+    public void loadClicked()
+    {
+        playPauseMode = false;
+        settings = false;
+        stepForward = false;
+        stepBack = false;
+        load = true;
+        save = false;
+    }
+    /**
+     * Method for when the user wants to save a current game
+     */
+    public void saveClicked()
+    {
+        playPauseMode = false;
+        settings = false;
+        stepForward = false;
+        stepBack = false;
+        load = false;
+        save = true;
     }
 
 
@@ -69,13 +139,21 @@ public class PlayScreen
      */
     public void processTouch(float x, float y)
     {
-        //not finished
+        int actualX = (int)(x / cellSize);
+        int actualY = (int)(y / cellSize);
         RectangleShape tile =
             getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
         tile.setFillColor(Color.black);
-        int actualX = (int)(x / cellSize);
-        int actualY = (int)(y / cellSize);
-        this.getCell(actualX, actualY).setAlive();
+        if (grid.getCell(actualX, actualY).getAlive())
+        {
+            tile.setFillColor(Color.white);
+            grid.getCell(actualX, actualY).setDead();
+        }
+        else
+        {
+            tile.setFillColor(Color.black);
+            grid.getCell(actualX, actualY).setAlive();
+        }
     }
 
 
