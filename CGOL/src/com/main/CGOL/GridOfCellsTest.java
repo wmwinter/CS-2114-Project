@@ -38,6 +38,7 @@ public class GridOfCellsTest extends student.TestCase
     {
         assertEquals(10, grid.width());
         assertEquals(9, grid.height());
+        assertNotNull(grid.getCell(0, 0));
         assertFalse(grid.isAlive(0, 0));
     }
 
@@ -51,6 +52,35 @@ public class GridOfCellsTest extends student.TestCase
         assertEquals(2, grid.getNeighbors(0, 0));
     }
 
+    /**
+     * tests getting cells outside of the grid
+     */
+    public void testGetCellOutside()
+    {
+        assertNull(grid.getCell(0, -1));
+        assertNull(grid.getCell(-1, 0));
+        assertNull(grid.getCell(11, 0));
+        assertNull(grid.getCell(0, 11));
+    }
+
+    /**
+     * tests checking if a cell is alive
+     */
+    public void testIsAlive()
+    {
+        assertFalse(grid.isAlive(-1, -1));
+        grid.getCell(0, 0).setAlive();
+        assertTrue(grid.isAlive(0, 0));
+    }
+
+    /**
+     * tests getting the dimensions of the board
+     */
+    public void testDimensions()
+    {
+        assertEquals(grid.width(), 10);
+        assertEquals(grid.height(), 9);
+    }
 
 
 
