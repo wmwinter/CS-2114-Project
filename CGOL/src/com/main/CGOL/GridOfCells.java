@@ -1,5 +1,6 @@
 package com.main.CGOL;
 
+
 /**
  * // -------------------------------------------------------------------------
  * /** Our class for the main game screen.
@@ -12,6 +13,7 @@ package com.main.CGOL;
  * @version April 10, 2015
  */
 public class GridOfCells
+
 {
     private CellLocation[][] grid;
     private int gridWidth;
@@ -28,15 +30,15 @@ public class GridOfCells
         gridWidth = x;
         gridHeight = y;
         grid = new CellLocation[gridWidth][gridWidth];
-        for (int i = 0; x < gridWidth; i++)
+        for (int i = 0; i < gridWidth; i++)
         {
-            for (int j = 0; y < gridWidth; j++)
+            for (int j = 0; j < gridWidth; j++)
             {
                 grid[i][j] = new CellLocation(i, j);
-
-
             }
         }
+
+
     }
 
     /**
@@ -72,9 +74,12 @@ public class GridOfCells
         {
             for (int j = y - 1; j < y + 2; j++)
             {
-                if (this.getCell(i, j).getAlive())
+                if (this.getCell(i, j) != null)
                 {
-                    neighs++;
+                    if (this.getCell(i, j).getAlive())
+                    {
+                        neighs++;
+                    }
                 }
             }
         }
@@ -88,28 +93,44 @@ public class GridOfCells
      * Returns the specified cell
      *
      * @return cell the cell we want
-     * @param x the coordinate for the cell we want
-     * @param y the coordinate for the cell we want
+     * @param x
+     *            the coordinate for the cell we want
+     * @param y
+     *            the coordinate for the cell we want
      */
     public CellLocation getCell(int x, int y)
     {
-        return grid[x][y];
+        if ((x > -1) && (y > -1) && (x < width()) && (y < height()))
+        {
+            return grid[x][y];
+        }
+        else
+        {
+            return null;
+        }
     }
 
 
     /**
      * Runs the program
      *
-     * @param x coordinate of the cell
-     * @param y coordinate of the cell
-     *
+     * @param x
+     *            coordinate of the cell
+     * @param y
+     *            coordinate of the cell
      * @return boolean
      */
     public boolean isAlive(int x, int y)
     {
-        return this.getCell(x, y).getAlive();
+        if (this.getCell(x, y) == null)
+        {
+            return false;
+        }
+        else
+        {
+
+            return this.getCell(x, y).getAlive();
+        }
     }
 
-
 }
-

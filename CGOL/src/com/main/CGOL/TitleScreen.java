@@ -1,5 +1,6 @@
 package com.main.CGOL;
 
+import android.content.Intent;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,5 +44,14 @@ public class TitleScreen
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    /**
+     * Access to the settings screen
+     */
+    public void settingsClicked()
+    {
+        Intent intent = new Intent(this, SettingsScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

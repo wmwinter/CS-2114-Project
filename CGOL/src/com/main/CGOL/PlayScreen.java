@@ -1,4 +1,7 @@
 package com.main.CGOL;
+import android.view.View;
+import android.widget.EditText;
+import android.content.Intent;
 import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import android.view.Display;
@@ -16,18 +19,11 @@ import android.app.Activity;
 public class PlayScreen
     extends ShapeScreen
 {
-    private int          gridXnum;
-    private int          gridYnum;
+    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     private float        gridWidth;
     private float        gridHeight;
     private GridOfCells  grid;
     private float        cellSize;
-    private Boolean      playPauseMode;
-    private Boolean      settings;
-    private Boolean      stepForward;
-    private Boolean      stepBack;
-    private Boolean      load;
-    private Boolean      save;
 
     /**
      * The initialize method sets up the grid.
@@ -38,8 +34,6 @@ public class PlayScreen
     {
         gridWidth = this.getWidth();
         gridHeight = this.getHeight();
-        gridXnum = x;
-        gridYnum = y;
         grid = new GridOfCells(x, y);
         cellSize = (Math.min(gridWidth, gridHeight) / Math.max(x, y));
         for (int i = 0; i < x; i++)
@@ -58,78 +52,14 @@ public class PlayScreen
     }
 
     /**
-     * Method for when the user wants to play the simulation
-     */
-    public void playPauseModeClicked()
-    {
-        playPauseMode = true;
-        settings = false;
-        stepForward = false;
-        stepBack = false;
-        load = false;
-        save = false;
-    }
-    /**
      * Method for when the user wants to go to the settings page
      */
     public void settingsClicked()
     {
-        playPauseMode = false;
-        settings = true;
-        stepForward = false;
-        stepBack = false;
-        load = false;
-        save = false;
+        Intent intent = new Intent(this, SettingsScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
-    /**
-     * Method for when the user wants to step forward once in the simulation
-     */
-    public void stepForwardClicked()
-    {
-        playPauseMode = false;
-        settings = false;
-        stepForward = true;
-        stepBack = false;
-        load = false;
-        save = false;
-    }
-    /**
-     * Method for when the user wants to step backward once in the simulation
-     */
-    public void stepBackClicked()
-    {
-        playPauseMode = false;
-        settings = false;
-        stepForward = false;
-        stepBack = true;
-        load = false;
-        save = false;
-    }
-    /**
-     * Method for when the user wants to load an already saved game
-     */
-    public void loadClicked()
-    {
-        playPauseMode = false;
-        settings = false;
-        stepForward = false;
-        stepBack = false;
-        load = true;
-        save = false;
-    }
-    /**
-     * Method for when the user wants to save a current game
-     */
-    public void saveClicked()
-    {
-        playPauseMode = false;
-        settings = false;
-        stepForward = false;
-        stepBack = false;
-        load = false;
-        save = true;
-    }
-
 
     /**
      * Processes the user's touch
@@ -179,6 +109,5 @@ public class PlayScreen
     {
         this.processTouch(x, y);
     }
-
 
 }
