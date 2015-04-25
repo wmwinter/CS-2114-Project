@@ -6,7 +6,6 @@ import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import android.view.Display;
 import sofia.graphics.RectangleShape;
-import android.app.Activity;
 
 /**
  * // -------------------------------------------------------------------------
@@ -19,7 +18,6 @@ import android.app.Activity;
 public class PlayScreen
     extends ShapeScreen
 {
-    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     private float        gridWidth;
     private float        gridHeight;
     private GridOfCells  grid;

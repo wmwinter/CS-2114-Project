@@ -1,13 +1,20 @@
 package com.main.CGOL;
 
-import android.content.Intent;
-import android.app.Activity;
+import sofia.app.ShapeScreen;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * // -------------------------------------------------------------------------
+/**
+ *  The screen to create the title screen
+ *
+ *  @author Bill and Bryan and Parisa
+ *  @version Apr 23, 2015
+ */
 public class TitleScreen
-    extends Activity
+    extends ShapeScreen
 {
 
     public TitleScreen()
@@ -30,8 +37,6 @@ public class TitleScreen
         getMenuInflater().inflate(R.menu.title_screen, menu);
         return true;
     }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -50,8 +55,20 @@ public class TitleScreen
      */
     public void settingsClicked()
     {
-        Intent intent = new Intent(this, SettingsScreen.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        this.presentScreen(SettingsScreen.class);
+    }
+    /**
+     * Access to the play screen
+     */
+    public void startClicked()
+    {
+        this.presentScreen(PlayScreen.class);
+    }
+    /**
+     * Access to the play screen
+     */
+    public void savedClicked()
+    {
+        this.presentScreen(SavedScreen.class);
     }
 }
