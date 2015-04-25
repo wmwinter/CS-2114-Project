@@ -1,4 +1,7 @@
 package com.main.CGOL;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import sofia.graphics.RectangleShape;
@@ -42,11 +45,39 @@ public class PlayScreen
                         j * cellSize,
                         (i + 1) * cellSize,
                         (j + 1) * cellSize);
+                cell.setColor(Color.black);
                 cell.setFillColor(dead);
                 this.add(cell);
             }
         }
     }
+
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_title_screen);
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.title_screen, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings)
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     /**
      * Sets the live cell color
@@ -71,7 +102,7 @@ public class PlayScreen
     /**
      * Method for when the user wants to go to the settings page
      */
-    public void settingsClicked()
+    public void settingsPlayClicked()
     {
         this.presentScreen(SettingsScreen.class);
     }
