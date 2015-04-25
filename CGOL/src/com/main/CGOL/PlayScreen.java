@@ -1,10 +1,6 @@
 package com.main.CGOL;
-import android.view.View;
-import android.widget.EditText;
-import android.content.Intent;
 import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
-import android.view.Display;
 import sofia.graphics.RectangleShape;
 
 /**
@@ -22,21 +18,23 @@ public class PlayScreen
     private float        gridHeight;
     private GridOfCells  grid;
     private float        cellSize;
+    private Color        live;
+    private Color        dead;
 
     /**
      * The initialize method sets up the grid.
-     * @param x     horizontal dimension of play area
-     * @param y     vertical dimension of play area
      */
-    public void initialize(int x, int y)
+    public void initialize()
     {
+        live = Color.white;
+        dead = Color.darkGray;
         gridWidth = this.getWidth();
         gridHeight = this.getHeight();
-        grid = new GridOfCells(x, y);
-        cellSize = (Math.min(gridWidth, gridHeight) / Math.max(x, y));
-        for (int i = 0; i < x; i++)
+        grid = new GridOfCells(20, 40);
+        cellSize = (Math.min(gridWidth, gridHeight) / 20);
+        for (int i = 0; i < 20; i++)
         {
-            for (int j = 0; j < y; j++)
+            for (int j = 0; j < 25; j++)
             {
                 RectangleShape cell =
                     new RectangleShape(
@@ -44,9 +42,30 @@ public class PlayScreen
                         j * cellSize,
                         (i + 1) * cellSize,
                         (j + 1) * cellSize);
+                cell.setFillColor(dead);
                 this.add(cell);
             }
         }
+    }
+
+    /**
+     * Sets the live cell color
+     *
+     * @param userColor The color the user wants the live cells to be
+     */
+    public void setLiveColor(Color userColor)
+    {
+        live = userColor;
+    }
+
+    /**
+     * Sets the dead cell color
+     *
+     * @param userColor The color the user wants the dead cells to be
+     */
+    public void setDeadColor(Color userColor)
+    {
+        dead = userColor;
     }
 
     /**
@@ -54,9 +73,7 @@ public class PlayScreen
      */
     public void settingsClicked()
     {
-        Intent intent = new Intent(this, SettingsScreen.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        this.presentScreen(SettingsScreen.class);
     }
 
     /**
@@ -71,15 +88,14 @@ public class PlayScreen
         int actualY = (int)(y / cellSize);
         RectangleShape tile =
             getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
-        tile.setFillColor(Color.black);
         if (grid.getCell(actualX, actualY).getAlive())
         {
-            tile.setFillColor(Color.white);
+            tile.setFillColor(dead);
             grid.getCell(actualX, actualY).setDead();
         }
         else
         {
-            tile.setFillColor(Color.black);
+            tile.setFillColor(live);
             grid.getCell(actualX, actualY).setAlive();
         }
     }

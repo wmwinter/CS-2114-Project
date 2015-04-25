@@ -17,11 +17,6 @@ public class TitleScreen
     extends ShapeScreen
 {
 
-    public TitleScreen()
-    {
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

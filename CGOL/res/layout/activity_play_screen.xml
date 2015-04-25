@@ -10,18 +10,24 @@
 
     <sofia.graphics.ShapeView
         android:id="@+id/grid"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+        android:layout_width="400dp"
+        android:layout_height="380dp"
+        android:layout_alignParentLeft="true" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/playPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/grid"
-        android:layout_alignTop="@+id/grid"
+        android:layout_alignLeft="@+id/grid"
+        android:layout_alignParentBottom="true"
+        android:text="Play/Pause" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grid"
+        android:layout_toRightOf="@+id/playPause"
         android:text="Settings" />
 
 </RelativeLayout>
