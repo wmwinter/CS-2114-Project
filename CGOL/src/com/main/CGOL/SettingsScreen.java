@@ -17,7 +17,7 @@ import android.widget.*;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.LayoutParams;
 
 // -------------------------------------------------------------------------
 /**
@@ -114,10 +114,10 @@ public class SettingsScreen
             black.setBackgroundColor(Color.black);
             grey.setBackgroundColor(Color.grey);
         }
-        
+
         public void greyClicked()
         {
-            
+
         }
 
 
