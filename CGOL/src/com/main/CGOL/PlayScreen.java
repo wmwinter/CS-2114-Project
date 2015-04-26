@@ -1,7 +1,10 @@
 package com.main.CGOL;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.RelativeLayout;
+import android.widget.Button;
+import sofia.graphics.ShapeView;
+import android.view.ViewGroup.LayoutParams;
+import android.view.View;
+import android.view.ViewGroup;
 import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import sofia.graphics.RectangleShape;
@@ -19,22 +22,28 @@ public class PlayScreen
 {
     private float        gridWidth;
     private float        gridHeight;
-    private GridOfCells  grid;
+    private GridOfCells  theGrid;
     private float        cellSize;
     private Color        live;
     private Color        dead;
+    private ShapeView     grid;
+    private Button settings;
+    private Button playPause;
+    private Button step;
 
-    /**
-     * The initialize method sets up the grid.
-     */
     public void initialize()
     {
         live = Color.white;
         dead = Color.darkGray;
         gridWidth = this.getWidth();
         gridHeight = this.getHeight();
-        grid = new GridOfCells(20, 40);
+        theGrid = new GridOfCells(20, 25);
         cellSize = (Math.min(gridWidth, gridHeight) / 20);
+        RelativeLayout layout = new RelativeLayout(this);
+//        RelativeLayout relative = (RelativeLayout) findViewById(R.layout.activity_play_screen);
+        grid.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
+            (LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         for (int i = 0; i < 20; i++)
         {
             for (int j = 0; j < 25; j++)
@@ -47,37 +56,16 @@ public class PlayScreen
                         (j + 1) * cellSize);
                 cell.setColor(Color.black);
                 cell.setFillColor(dead);
-                this.add(cell);
+                this.addContentView(grid, params);
             }
         }
-    }
+        layout.addView(grid);
+        layout.addView(playPause);
+        layout.addView(step);
+        layout.addView(settings);
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_title_screen);
+//        screenSize = new ViewGroup.LayoutParams(R.layout.activity_play_screen, R.layout.activity_play_screen);
     }
-
-
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.title_screen, menu);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     /**
      * Sets the live cell color
@@ -119,15 +107,15 @@ public class PlayScreen
         int actualY = (int)(y / cellSize);
         RectangleShape tile =
             getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
-        if (grid.getCell(actualX, actualY).getAlive())
+        if (theGrid.getCell(actualX, actualY).getAlive())
         {
             tile.setFillColor(dead);
-            grid.getCell(actualX, actualY).setDead();
+            theGrid.getCell(actualX, actualY).setDead();
         }
         else
         {
             tile.setFillColor(live);
-            grid.getCell(actualX, actualY).setAlive();
+            theGrid.getCell(actualX, actualY).setAlive();
         }
     }
 
