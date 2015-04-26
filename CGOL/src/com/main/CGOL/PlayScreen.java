@@ -1,10 +1,4 @@
 package com.main.CGOL;
-import android.widget.RelativeLayout;
-import android.widget.Button;
-import sofia.graphics.ShapeView;
-import android.view.ViewGroup.LayoutParams;
-import android.view.View;
-import android.view.ViewGroup;
 import sofia.app.ShapeScreen;
 import sofia.graphics.Color;
 import sofia.graphics.RectangleShape;
@@ -26,10 +20,6 @@ public class PlayScreen
     private float        cellSize;
     private Color        live;
     private Color        dead;
-    private ShapeView     grid;
-    private Button settings;
-    private Button playPause;
-    private Button step;
 
     public void initialize()
     {
@@ -51,21 +41,9 @@ public class PlayScreen
                         (j + 1) * cellSize);
                 cell.setColor(Color.black);
                 cell.setFillColor(dead);
-                grid.add(cell);
+                this.add(cell);
             }
         }
-        RelativeLayout layout = new RelativeLayout(this);
-//      RelativeLayout relative = (RelativeLayout) findViewById(R.layout.activity_play_screen);
-//      grid.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-      RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
-          (LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        this.addContentView(grid, params);
-        layout.addView(grid);
-        layout.addView(playPause);
-        layout.addView(step);
-        layout.addView(settings);
-
-//        screenSize = new ViewGroup.LayoutParams(R.layout.activity_play_screen, R.layout.activity_play_screen);
     }
 
     /**
@@ -97,6 +75,19 @@ public class PlayScreen
     }
 
     /**
+     * Plays the simulation
+     */
+    public void playPauseClicked()
+    {
+
+    }
+
+    /**
+     * Time step method to run simulation
+     */
+
+
+    /**
      * Processes the user's touch
      *
      * @param x the x coord
@@ -107,7 +98,7 @@ public class PlayScreen
         int actualX = (int)(x / cellSize);
         int actualY = (int)(y / cellSize);
         RectangleShape tile =
-            getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
+            this.getShapes().locatedAt(x, y).withClass(RectangleShape.class).front();
         if (theGrid.getCell(actualX, actualY).getAlive())
         {
             tile.setFillColor(dead);

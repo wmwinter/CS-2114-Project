@@ -5,7 +5,7 @@
     tools:context="com.main.CGOL.PlayScreen" >
 
     <sofia.graphics.ShapeView
-        android:id="@+id/grid"
+        android:id="@+id/shapeView"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/playPause"
@@ -16,7 +16,7 @@
         android:id="@+id/playPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/grid"
+        android:layout_alignLeft="@+id/shapeView"
         android:layout_alignParentBottom="true"
         android:text="Play/Pause" />
 
