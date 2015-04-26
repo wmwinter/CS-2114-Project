@@ -39,11 +39,6 @@ public class PlayScreen
         gridHeight = this.getHeight();
         theGrid = new GridOfCells(20, 25);
         cellSize = (Math.min(gridWidth, gridHeight) / 20);
-        RelativeLayout layout = new RelativeLayout(this);
-//        RelativeLayout relative = (RelativeLayout) findViewById(R.layout.activity_play_screen);
-        grid.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
-            (LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         for (int i = 0; i < 20; i++)
         {
             for (int j = 0; j < 25; j++)
@@ -56,9 +51,15 @@ public class PlayScreen
                         (j + 1) * cellSize);
                 cell.setColor(Color.black);
                 cell.setFillColor(dead);
-                this.addContentView(grid, params);
+                grid.add(cell);
             }
         }
+        RelativeLayout layout = new RelativeLayout(this);
+//      RelativeLayout relative = (RelativeLayout) findViewById(R.layout.activity_play_screen);
+//      grid.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+      RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
+          (LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        this.addContentView(grid, params);
         layout.addView(grid);
         layout.addView(playPause);
         layout.addView(step);
