@@ -48,7 +48,7 @@ public class SettingsScreen
     public void initialize()
     {
         setBackgroundColor(Color.getRandomColor());
-        int widgetIDs[] = AppWidgetManager.getInstance(getApplication());
+        //int widgetIDs[] = AppWidgetManager.getInstance(getApplication());
     }
 
     public void DeadClicked(View view)
@@ -100,6 +100,7 @@ public class SettingsScreen
 
         public void onCreate(Bundle savedInstanceState)
         {
+            /**
             super.onCreate(savedInstanceState);
             this.setContentView(activity_popup_screen.xml);
             popup = new PopupWindow(this);
@@ -113,6 +114,7 @@ public class SettingsScreen
             white.setBackgroundColor(Color.white);
             black.setBackgroundColor(Color.black);
             grey.setBackgroundColor(Color.grey);
+            */
         }
 
         public void greyClicked()
