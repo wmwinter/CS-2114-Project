@@ -133,4 +133,32 @@ public class GridOfCells
         }
     }
 
+    /**
+     * Updates the grid cells depending on their state of living
+     */
+    public void update()
+    {
+        for (int i  = 0 ; i < grid.length; i++)
+        {
+            for (int j = 0; j < grid[0].length; j++)
+            {
+                if (this.getCell(i, j).getAlive())
+                {
+                    if(this.getNeighbors(i, j) < 2 || this.getNeighbors(i, j) > 3)
+                    {
+                        this.getCell(i, j).setDead();
+                    }
+                }
+                else
+                {
+                    if(this.getNeighbors(i, j) == 3)
+                    {
+                        this.getCell(i, j).setAlive();
+                    }
+                }
+            }
+        }
+    }
+
+
 }

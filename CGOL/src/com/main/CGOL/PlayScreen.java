@@ -75,6 +75,19 @@ public class PlayScreen
     }
 
     /**
+     * Plays the simulation
+     */
+    public void playPauseClicked()
+    {
+
+    }
+
+    /**
+     * Time step method to run simulation
+     */
+
+
+    /**
      * Processes the user's touch
      *
      * @param x the x coord
