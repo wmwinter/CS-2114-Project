@@ -26,7 +26,6 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f08000b;
-        public static final int grid=0x7f080000;
         public static final int imageView1=0x7f080007;
         public static final int imageView2=0x7f080009;
         public static final int imageView3=0x7f08000a;
@@ -34,19 +33,20 @@ public final class R {
         public static final int saved=0x7f080006;
         public static final int settings=0x7f080005;
         public static final int settingsPlay=0x7f080002;
+        public static final int shapeView=0x7f080000;
         public static final int start=0x7f080008;
         public static final int step=0x7f080003;
         public static final int title=0x7f080004;
     }
     public static final class layout {
-        public static final int activity_play_screen=0x7f030000;
-        public static final int activity_settings_screen=0x7f030001;
-        public static final int activity_title_screen=0x7f030002;
+        public static final int activity_settings_screen=0x7f030000;
+        public static final int playscreen=0x7f030001;
+        public static final int titlescreen=0x7f030002;
     }
     public static final class menu {
-        public static final int play_screen=0x7f070000;
+        public static final int playscreen=0x7f070000;
         public static final int settings_screen=0x7f070001;
-        public static final int title_screen=0x7f070002;
+        public static final int titlescreen=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;

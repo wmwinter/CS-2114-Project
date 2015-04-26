@@ -1,6 +1,7 @@
 package com.main.CGOL;
 
-import sofia.app.ShapeScreen;
+import sofia.app.Screen;
+import android.os.Bundle;
 
 /**
  * // -------------------------------------------------------------------------
@@ -11,13 +12,14 @@ import sofia.app.ShapeScreen;
  *  @version Apr 23, 2015
  */
 public class TitleScreen
-    extends ShapeScreen
+    extends Screen
 {
 
-    public void initialize()
-    {
-        setContentView(R.layout.activity_title_screen);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.titlescreen);
     }
+
 
     /**
      * Access to the settings screen
